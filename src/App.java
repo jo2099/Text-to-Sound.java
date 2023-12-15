@@ -1,29 +1,26 @@
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Carregar o arquivo FXML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("layout.fxml"));
-        Parent root = loader.load();
-
-        // Configurar o controlador
-        controller controller = loader.getController();
-
-        // Configurar a cena
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Minha Aplicação");
-
-        // Exibir a janela
+        StackPane root = new StackPane();
+        primaryStage.setTitle("Hello World");
+        primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
+        Thread.sleep(1000);
+        
+        Text texto=new Text(new Character[]{'C','D','E','F','G','A','B'});
+        MidiHandler midiHandler=new MidiHandler();
+        Audio audio=new Audio();
+        audio.playSequence(midiHandler.convertTextToSequence(texto.getContent()));
+
+
     }
 }
